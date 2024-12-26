@@ -49,7 +49,8 @@ class MainActivity : ComponentActivity() {
                 NavHost(navController = navController, startDestination = "first") {
                     composable("first") { MainContent(navController) }
                     composable("second") { SecondScreen(navController) }
-                    composable("third") { ThirdScreen(navController) }
+                    //composable("third") { ThirdScreen(navController) }
+                    composable("third") { ThirdScreen(navController = navController) }
                     composable("fourth_screen") { FourthScreen() }
                 }
             }

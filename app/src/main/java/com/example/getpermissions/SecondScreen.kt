@@ -44,7 +44,7 @@ fun SecondScreen(navController: NavHostController) {
             // todo: 「許可しない」が選択された場合の処理が必要 → デバック中はアンインストールして対応中
             // todo: ↓アンインストールコマンド
             // todo: adb uninstall com.example.getpermissions
-            // ここでは特に何もしない
+            navController.navigate("third")
         }
     }
     Column(
@@ -79,6 +79,7 @@ fun SecondScreen(navController: NavHostController) {
                 Text(text = stringResource(R.string.request_permission))
             }
             Button(onClick = {
+                navController.navigate("third")
             }) {
                 Text(text = stringResource(R.string.deny_permission))
             }
