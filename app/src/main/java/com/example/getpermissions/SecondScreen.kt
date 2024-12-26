@@ -12,6 +12,7 @@ import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -45,6 +46,12 @@ fun SecondScreen(navController: NavHostController) {
             // todo: ↓アンインストールコマンド
             // todo: adb uninstall com.example.getpermissions
             navController.navigate("third")
+        }
+    }
+    LaunchedEffect(key1 = true) {
+        // 権限がない場合、FifthScreenに遷移する
+        if (!checkLocationPermission(context)) {
+            navController.navigate("fifth")
         }
     }
     Column(

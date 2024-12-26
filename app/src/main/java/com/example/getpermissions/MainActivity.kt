@@ -52,6 +52,7 @@ class MainActivity : ComponentActivity() {
                     //composable("third") { ThirdScreen(navController) }
                     composable("third") { ThirdScreen(navController = navController) }
                     composable("fourth_screen") { FourthScreen() }
+                    composable("fifth") { FifthScreen() }
                 }
             }
         }

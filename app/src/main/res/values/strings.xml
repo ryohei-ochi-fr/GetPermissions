@@ -7,4 +7,6 @@
     <string name="request_permission">権限を要求する</string>
     <string name="allowed_permission">権限を許可する</string>
     <string name="deny_permission">権限を拒否する</string>
+    <string name="fifth_permission_reason">todo:より詳細な説明文とする このアプリを実行するには、位置情報の権限が必要です。このアプリは、お使いの現在地情報を確認します。権限を許可しない場合、このアプリは使用できません。</string>
+    <string name="normal_transition">正常遷移</string>
 </resources>
