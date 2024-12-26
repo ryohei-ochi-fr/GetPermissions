@@ -40,6 +40,10 @@ fun SecondScreen(navController: NavHostController) {
             }
         } else {
             // パーミッションが拒否された場合の処理
+            // todo: 一度でも権限リクエストのポップアップで「許可しない」が選択された場合「設定画面」から手動で許可する必要がある
+            // todo: 「許可しない」が選択された場合の処理が必要 → デバック中はアンインストールして対応中
+            // todo: ↓アンインストールコマンド
+            // todo: adb uninstall com.example.getpermissions
             // ここでは特に何もしない
         }
     }
