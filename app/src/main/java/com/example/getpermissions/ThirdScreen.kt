@@ -25,7 +25,7 @@ fun ThirdScreen(navController: NavController) {
     ) {
         //説明文
         Text(
-            text = "このアプリは、あなたの位置情報を取得します。",
+            text = "ThirdScreen:このアプリは、あなたの位置情報を取得します。",
             modifier = Modifier
                 .padding(16.dp)
                 .weight(1f),
@@ -34,13 +34,13 @@ fun ThirdScreen(navController: NavController) {
         //スタートボタン
         Button(
             onClick = {
-                navController.navigate("fourth")
+                navController.navigate("second")
             },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(16.dp)
         ) {
-            Text(text = "スタート")
+            Text(text = "戻る")
         }
     }
 }

@@ -16,8 +16,10 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -31,19 +33,21 @@ class MainActivity : ComponentActivity() {
             GetPermissionsTheme {
                 val navController = rememberNavController()
                 val context = LocalContext.current
-                LaunchedEffect(key1 = true) {
+                // 画面読み込み時に一度だけ実行
+                LaunchedEffect(key1 = Unit) {
                     if (checkLocationPermission(context)) {
                         navController.navigate("fourth_screen") {
                             popUpTo("first") { inclusive = true }
                         }
                     } else {
-                        navController.navigate("main") {
+                        // SecondScreenではなく、MainContentを表示
+                        navController.navigate("first") {
                             popUpTo("first") { inclusive = true }
                         }
                     }
                 }
-                NavHost(navController = navController, startDestination = "main") {
-                    composable("main") { MainContent() }
+                NavHost(navController = navController, startDestination = "first") {
+                    composable("first") { MainContent(navController) }
                     composable("second") { SecondScreen(navController) }
                     composable("third") { ThirdScreen(navController) }
                     composable("fourth_screen") { FourthScreen() }
@@ -54,7 +58,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun MainContent() {
+fun MainContent(navController: NavController) {
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -62,7 +66,7 @@ fun MainContent() {
     ) {
         // 説明文
         Text(
-            text = "このアプリを実行するには、位置情報の権限が必要です。このアプリは、お使いの現在地情報を確認します。権限を許可しない場合、このアプリは使用できません。",
+            text = stringResource(R.string.main_content_description),
             modifier = Modifier
                 .padding(16.dp)
                 .weight(1f),
@@ -75,16 +79,24 @@ fun MainContent() {
                 .padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            // SecondScreenへ遷移するボタン
+            Button(
+                onClick = {
+                    navController.navigate("second")
+                },
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text(text = stringResource(R.string.next_button))
+            }
             // アプリを終了するボタン
             val context = LocalContext.current
             Button(
                 onClick = {
-
                     finishApp(context)
                 },
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Text(text = "アプリを終了する")
+                Text(text = stringResource(R.string.exit_app))
             }
         }
     }

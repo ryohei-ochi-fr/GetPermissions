@@ -18,6 +18,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.core.app.ActivityCompat
 import androidx.navigation.NavHostController
@@ -48,7 +50,14 @@ fun SecondScreen(navController: NavHostController) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = "Second Screen")
+        // 権限が必要な理由を表示
+        Text(
+            text = stringResource(R.string.permission_reason),
+            modifier = Modifier
+                .padding(16.dp)
+                .fillMaxWidth(),
+            textAlign = TextAlign.Center
+        )
         // 権限をリクエストするボタン
         if (!checkLocationPermission(context)) {
             Button(
@@ -75,13 +84,13 @@ fun SecondScreen(navController: NavHostController) {
                     .fillMaxWidth()
                     .padding(bottom = 8.dp)
             ) {
-                Text(text = "権限を許可する")
+                Text(text = stringResource(R.string.allow_permission))
             }
         }
         Button(onClick = {
             navController.navigate("third")
         }) {
-            Text("Go to Third Screen")
+            Text(text = stringResource(R.string.deny_permission))
         }
         // アプリ設定画面を開くダイアログ
         if (openDialog.value) {
