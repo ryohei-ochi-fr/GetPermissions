@@ -18,7 +18,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -32,20 +31,19 @@ class MainActivity : ComponentActivity() {
             GetPermissionsTheme {
                 val navController = rememberNavController()
                 val context = LocalContext.current
-                // Use LaunchedEffect inside the composable to run only one time when the screen load.
                 LaunchedEffect(key1 = true) {
                     if (checkLocationPermission(context)) {
                         navController.navigate("fourth_screen") {
                             popUpTo("first") { inclusive = true }
                         }
                     } else {
-                        navController.navigate("second") {
+                        navController.navigate("main") {
                             popUpTo("first") { inclusive = true }
                         }
                     }
                 }
-                NavHost(navController = navController, startDestination = "first") {
-                    composable("first") { MainContent(navController) }
+                NavHost(navController = navController, startDestination = "main") {
+                    composable("main") { MainContent() }
                     composable("second") { SecondScreen(navController) }
                     composable("third") { ThirdScreen(navController) }
                     composable("fourth_screen") { FourthScreen() }
@@ -56,7 +54,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun MainContent(navController: NavController) {
+fun MainContent() {
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
