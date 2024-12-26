@@ -2,10 +2,6 @@ package com.example.getpermissions
 
 import android.Manifest
 import android.app.Activity
-import android.content.Context
-import android.content.Intent
-import android.net.Uri
-import android.provider.Settings
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
@@ -28,7 +24,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.app.ActivityCompat
 import androidx.navigation.NavController
-import java.io.File
 
 @Composable
 fun FifthScreen(navController: NavController) {
@@ -65,7 +60,7 @@ fun FifthScreen(navController: NavController) {
     ) {
         // 説明文
         Text(
-            text = "このアプリを実行するには、位置情報の権限が必要です。このアプリは、マイクを通してスピーカーから音声を再生するために、お使いの現在地情報を確認します。権限を許可しない場合、このアプリは使用できません。",
+            text = "このアプリを実行するには、位置情報の権限が必要です。このアプリは、お使いの現在地情報を確認します。権限を許可しない場合、このアプリは使用できません。",
             modifier = Modifier
                 .padding(16.dp)
                 .weight(1f),
@@ -152,45 +147,6 @@ fun AppSettingsDialog(onDismissRequest: () -> Unit, onConfirmation: () -> Unit) 
             }
         }
     )
-}
-
-// 設定画面を開く
-fun openAppSettings(context: Context) {
-    val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
-        data = Uri.fromParts("package", context.packageName, null)
-    }
-    context.startActivity(intent)
-}
-
-// アプリのキャッシュを削除する関数
-fun clearAppCache(context: Context) {
-    try {
-        val cacheDir = context.cacheDir
-        if (cacheDir.isDirectory) {
-            deleteDir(cacheDir)
-        }
-    } catch (e: Exception) {
-        e.printStackTrace()
-    }
-}
-
-// ディレクトリを再帰的に削除する関数
-fun deleteDir(dir: File): Boolean {
-    if (dir.isDirectory) {
-        val children = dir.list()
-        for (i in children.indices) {
-            val success = deleteDir(File(dir, children[i]))
-            if (!success) {
-                return false
-            }
-        }
-    }
-    return dir.delete()
-}
-
-fun finishApp(context: Context) {
-    val activity = context as? Activity
-    activity?.finish()
 }
 
 @Preview(showBackground = true)

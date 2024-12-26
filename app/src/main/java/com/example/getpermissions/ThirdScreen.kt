@@ -25,7 +25,7 @@ fun ThirdScreen(navController: NavController) {
     ) {
         //説明文
         Text(
-            text = "このアプリは、あなたのマイクを使って音声をスピーカーで再生します。",
+            text = "このアプリは、あなたの位置情報を取得します。",
             modifier = Modifier
                 .padding(16.dp)
                 .weight(1f),
