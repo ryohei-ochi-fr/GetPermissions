@@ -19,7 +19,6 @@
 ```ps
 adb shell pm revoke com.example.getpermissions android.permission.ACCESS_FINE_LOCATION
 adb shell pm revoke com.example.getpermissions android.permission.ACCESS_COARSE_LOCATION
-adb shell pm revoke com.example.getpermissions android.permission.RECORD_AUDIO
 ```
 
 ### アプリのアンインストール
