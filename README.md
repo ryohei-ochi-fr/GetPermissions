@@ -25,7 +25,7 @@ adb shell pm revoke com.example.getpermissions android.permission.RECORD_AUDIO
 ### アプリのアンインストール
 
 ```ps
-adb shell pm clear com.example.getpermissions
+adb uninstall com.example.getpermissions
 ```
 
 ## 依存関係
