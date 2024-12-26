@@ -4,6 +4,7 @@
     <string name="exit_app">アプリを終了する</string>
     <string name="next_button">次へ</string>
     <string name="permission_reason">このアプリでは、現在地の情報を利用して、より正確な情報を提供するために、位置情報の権限が必要です。</string>
+    <string name="request_permission">権限を要求する</string>
     <string name="allow_permission">権限を許可する</string>
     <string name="deny_permission">権限を拒否する</string>
 </resources>

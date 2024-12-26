@@ -1,7 +1,6 @@
 package com.example.getpermissions
 
 import android.Manifest
-import android.app.Activity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
@@ -21,7 +20,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.core.app.ActivityCompat
 import androidx.navigation.NavHostController
 
 @Composable
@@ -63,35 +61,25 @@ fun SecondScreen(navController: NavHostController) {
             Button(
                 onClick = {
                     // 位置情報のパーミッションをリクエストする
-                    // shouldShowRequestPermissionRationale を確認する
-                    if (ActivityCompat.shouldShowRequestPermissionRationale(
-                            context as Activity,
-                            Manifest.permission.ACCESS_FINE_LOCATION
+                    requestPermissionLauncher.launch(
+                        arrayOf(
+                            Manifest.permission.ACCESS_FINE_LOCATION,
+                            Manifest.permission.ACCESS_COARSE_LOCATION
                         )
-                    ) {
-                        requestPermissionLauncher.launch(
-                            arrayOf(
-                                Manifest.permission.ACCESS_FINE_LOCATION,
-                                Manifest.permission.ACCESS_COARSE_LOCATION
-                            )
-                        )
-                    } else {
-                        // ダイアログを表示する
-                        openDialog.value = true
-                    }
+                    )
                 },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(bottom = 8.dp)
             ) {
-                Text(text = stringResource(R.string.allow_permission))
+                Text(text = stringResource(R.string.request_permission))
+            }
+            Button(onClick = {
+            }) {
+                Text(text = stringResource(R.string.deny_permission))
             }
         }
-        Button(onClick = {
-            navController.navigate("third")
-        }) {
-            Text(text = stringResource(R.string.deny_permission))
-        }
+
         // アプリ設定画面を開くダイアログ
         if (openDialog.value) {
             AlertDialog(
