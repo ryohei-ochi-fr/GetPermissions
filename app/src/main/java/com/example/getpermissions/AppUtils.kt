@@ -80,7 +80,8 @@ fun finishApp(context: Context){
 
 
 fun showToast(context: Context, message: String) {
-    Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+    // デバッグ用のトースト表示
+    // Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
 }
 
 suspend fun setFirstTimeLaunchValue(context: Context, value: Int) {
