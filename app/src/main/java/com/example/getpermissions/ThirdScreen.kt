@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -18,6 +19,7 @@ import androidx.navigation.NavController
 
 @Composable
 fun ThirdScreen(navController: NavController) {
+    val context = LocalContext.current
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -31,6 +33,11 @@ fun ThirdScreen(navController: NavController) {
                 .weight(1f),
             textAlign = TextAlign.Center
         )
+        LaunchedEffect(key1 = true) {
+            // 権限を拒否されたことを記録する
+            showToast(context, getFirstTimeLaunchValue(context).toString())
+            setFirstTimeLaunchValue(context, 3)
+        }
         //スタートボタン
         Button(
             onClick = {

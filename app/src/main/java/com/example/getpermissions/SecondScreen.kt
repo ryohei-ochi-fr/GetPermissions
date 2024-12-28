@@ -23,14 +23,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.datastore.preferences.core.edit
-import androidx.datastore.preferences.core.emptyPreferences
 import androidx.navigation.NavHostController
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.map
-import java.io.IOException
+
 
 @Composable
 fun SecondScreen(navController: NavHostController) {
@@ -59,14 +53,14 @@ fun SecondScreen(navController: NavHostController) {
     }
     LaunchedEffect(key1 = true) {
         showToast(context, getFirstTimeLaunchValue(context).toString())
-        if(getFirstTimeLaunchValue(context)){
-            //
-            setFirstTimeLaunchValue(context, false)
-        }else{
+        if(getFirstTimeLaunchValue(context) == 3){
+            // 一度でもThirdScreenに遷移したら 3 が設定されている
             // 権限がない場合、FifthScreenに遷移する
             if (!checkLocationPermission(context)) {
                 navController.navigate("fifth")
             }
+        }else{
+            setFirstTimeLaunchValue(context, 2)
         }
     }
     Column(
@@ -129,30 +123,4 @@ fun SecondScreen(navController: NavHostController) {
             )
         }
     }
-}
-
-fun showToast(context: Context, message: String) {
-    Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
-}
-
-suspend fun setFirstTimeLaunchValue(context: Context, value: Boolean) {
-    context.dataStore.edit { settings ->
-        settings[isFirstTimeLaunch] = value
-    }
-}
-suspend fun getFirstTimeLaunchValue(context: Context): Boolean {
-    val isFirstTimeLaunchFlow: Flow<Boolean> = context.dataStore.data
-        .catch { exception ->
-            if (exception is IOException) {
-                emit(emptyPreferences())
-            } else {
-                throw exception
-            }
-        }
-        .map { preferences ->
-            // No type safety.
-            preferences[isFirstTimeLaunch] ?: false
-        }
-
-    return isFirstTimeLaunchFlow.first()
 }
