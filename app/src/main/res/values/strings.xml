@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">GetPermissions</string>
+    <string name="main_content_description">アプリの説明文</string>
+    <string name="exit_app">アプリを終了する</string>
+    <string name="next_button">次へ</string>
+    <string name="permission_reason">このアプリでは、ユーザーに最も関連性の高い情報を提供するために、正確な位置情報が必要です。おおよその位置情報だけでは、十分な精度が得られないため、正確な位置情報の権限が必要となります。</string>    <string name="allow_permission">権限を許可する</string>
+    <string name="request_permission">権限を要求する</string>
+    <string name="allowed_permission">権限を許可する</string>
+    <string name="deny_permission">権限を拒否する</string>
+    <string name="normal_transition">正常遷移</string>
+    <string name="fifth_permission_reason">todo:より詳細な説明文とする このアプリを実行するには、位置情報の権限が必要です。このアプリは、お使いの現在地情報を確認します。権限を許可しない場合、このアプリは使用できません。</string>
+    <string name="fifth_screen_description">アプリの設定を更新してください。</string>
+    <string name="open_app_settings">設定画面を開く</string>
+    <string name="thank_you_message">権限を許可していただき、ありがとうございます。</string>
+    <string name="go_to_fourth_screen">Fourth Screenへ</string>
 </resources>
