@@ -41,8 +41,6 @@ style E fill:#fcf,stroke:#333,stroke-width:2px
 style F fill:#fcc,stroke:#333,stroke-width:2px
 ```
 
-```
-
 ## ADB コマンド
 
 ### 権限の剥奪
